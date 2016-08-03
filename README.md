@@ -9,3 +9,5 @@ This API depends on [Google Gson.](https://github.com/google/gson)
 You can download the API [here.](http://ruyili.github.io/xkcd-java-api.jar)
 
 If there are any issues, please let me know and I will try to fix them as fast as possible.
+
+Check out [this](https://github.com/vgonsalv/xkcd-java-api) as well.
