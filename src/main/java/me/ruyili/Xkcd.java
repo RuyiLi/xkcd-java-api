@@ -43,9 +43,9 @@ public class Xkcd {
         this.transcript = metadata.get("transcript").getAsString();
         this.link = metadata.get("link").getAsString();
         this.imageUrl = metadata.get("img").getAsString();
-        this.number = Integer.parseInt(metadata.get("num").getAsString());
-        this.month = Integer.parseInt(metadata.get("month").getAsString());
-        this.year = Integer.parseInt(metadata.get("year").getAsString());
+        this.number = metadata.get("num").getAsInt();
+        this.month = metadata.get("month").getAsInt();
+        this.year = metadata.get("year").getAsInt();
         this.day = metadata.get("day").getAsInt();
     }
 
