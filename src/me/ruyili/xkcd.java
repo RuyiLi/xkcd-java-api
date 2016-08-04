@@ -20,7 +20,7 @@ import com.google.gson.JsonSyntaxException;
 public class xkcd {
 
 	
-	public static String parse(String web) throws JsonIOException, JsonSyntaxException, IOException{
+	private static String parse(String web, String get) throws JsonIOException, JsonSyntaxException, IOException{
 	    URL url = new URL(web);
 	    HttpURLConnection request = (HttpURLConnection) url.openConnection();
 	    request.connect();
@@ -28,13 +28,13 @@ public class xkcd {
 	    JsonParser jp = new JsonParser();
 	    JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
 	    JsonObject rootobj = root.getAsJsonObject(); 
-	    String image = rootobj.get("img").getAsString();
+	    String res = rootobj.get(get).getAsString();
 	    
-	    return image;
+	    return res;
 	}
 	
 	public static File getImageFile(int page) throws JsonIOException, JsonSyntaxException, IOException{
-		String imageLink = parse("http://xkcd.com/" + page + "/info.0.json");
+		String imageLink = parse("http://xkcd.com/" + page + "/info.0.json", "img");
 		URL url = new URL(imageLink);
 		BufferedImage img = ImageIO.read(url);
 		File file = new File("downloaded.png");
@@ -43,17 +43,17 @@ public class xkcd {
 	}
 	
 	public static String getImageURL(int page) throws JsonIOException, JsonSyntaxException, IOException{
-		String imageLink = parse("http://xkcd.com/" + page + "/info.0.json");
+		String imageLink = parse("http://xkcd.com/" + page + "/info.0.json", "img");
 		return imageLink;
 	}
 	
 	public static String getNewestURL() throws JsonIOException, JsonSyntaxException, IOException{
-		String imageLink = parse("http://xkcd.com/info.0.json");
+		String imageLink = parse("http://xkcd.com/info.0.json", "img");
 		return imageLink;
 	}
 	
 	public static File getNewestImageFile() throws JsonIOException, JsonSyntaxException, IOException{
-		String imageLink = parse("http://xkcd.com/info.0.json");
+		String imageLink = parse("http://xkcd.com/info.0.json", "img");
 		URL url = new URL(imageLink);
 		BufferedImage img = ImageIO.read(url);
 		File file = new File("downloaded.png");
